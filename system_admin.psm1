@@ -1,5 +1,9 @@
 function Write-Log {
-    param([string]$Task)
+    param(
+    [Parameter(Mandatory=$true)]
+    [ValidateNotNullOrEmpty()]
+    [string]$Task
+)
 
     if (-not (Test-Path "C:\myLogs")) {
         New-Item -Path "C:\myLogs" -ItemType Directory -Force -ErrorAction Stop | Out-Null
