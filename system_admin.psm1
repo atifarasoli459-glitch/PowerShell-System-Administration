@@ -1,6 +1,10 @@
 ﻿function Write-Log {
     param([string]$Task)
 
+    if (-not (Test-Path "C:\myLogs")) {
+        New-Item -Path "C:\myLogs" -ItemType Directory -Force | Out-Null
+    }
+
     $DateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     "$DateTime - $Task" | Out-File -FilePath "C:\myLogs\system_admin.log" -Append
 }
