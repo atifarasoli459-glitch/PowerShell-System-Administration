@@ -1,13 +1,13 @@
-﻿function Write-Log {
+function Write-Log {
     param([string]$Task)
 
     if (-not (Test-Path "C:\myLogs")) {
-        New-Item -Path "C:\myLogs" -ItemType Directory -Force | Out-Null
+        New-Item -Path "C:\myLogs" -ItemType Directory -Force -ErrorAction Stop | Out-Null
     }
 
     $DateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    "$DateTime - $Task" | Out-File -FilePath "C:\myLogs\system_admin.log" -Append
-}
+    "$DateTime - $Task" | Out-File -FilePath "C:\myLogs\system_admin.log" -Append -ErrorAction Stop
+}﻿
 
 function Test-RemoteLogging {
     Write-Log -Task "Remote logging test successful"
